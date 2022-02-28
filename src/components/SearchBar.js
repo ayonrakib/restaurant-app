@@ -2,8 +2,8 @@ import React from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
-export default function SearchBar(){
-
+export default function SearchBar(props){
+    // console.log("props in SearchBar method is: ",props)
     const styles = StyleSheet.create({
         background: {
             backgroundColor: 'gray',
@@ -26,8 +26,14 @@ export default function SearchBar(){
     return(
         <View style = {styles.background}>
             <FontAwesome style={styles.searchIcon} name="search" size={24} color="black" />
-            <TextInput style = {styles.searchBar}
+            <TextInput 
+                style = {styles.searchBar}
                 placeholder="Search"
+                value={props.term}
+                onChangeText={(newTerm) => props.onTermChange(newTerm)}
+                autoCapitalize="none"
+                autoCorrect={false}
+                onEndEditing={() => props.onTermSubmit()}
             />
         </View>
     )

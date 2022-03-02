@@ -1,22 +1,34 @@
 import React, {useState} from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from '../api/yelp'
+import useResults from "../hooks/useResults";
+import Results from "../components/Results";
 
 export default function SearchScreen(){
 
     const [term, setTerm] = useState('')
-    const [results, setResults] = useState([]);
+    const [errorInSearchingRestaurants, results, searchApi] = useResults();
 
+    const filterResultsByPrice = (price) => {
+        // price === "$" || "$$" || "$$$"
+    }
+ 
     return (
         <View>
-            <SearchBar term = {term} onTermChange = {(newTerm) => setTerm(newTerm)} onTermSubmit = {() => console.log("checking for restaurant!")}/>
+            <SearchBar 
+                term = {term} 
+                onTermChange = {setTerm} 
+                onTermSubmit = {() => searchApi(term)}
+            />
             <Text>
-                The search string is: {term}
+                {errorInSearchingRestaurants}
             </Text>
             <Text>
-                Screen!
+                We have found {results.length} results!
             </Text>
+            <Results title = "Cost Effective"/>
+            <Results title = "Cheap"/>
+            <Results title = "Costly"/>
         </View>
     )
 }

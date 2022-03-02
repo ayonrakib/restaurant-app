@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import Results from "../components/Results";
@@ -29,6 +29,12 @@ export default function SearchScreen(){
             <Results title = "Cost Effective"/>
             <Results title = "Cheap"/>
             <Results title = "Costly"/>
+            <Image
+                style = {{ width: 100, height: 100, borderRadius: 18 }}
+                source={{
+                uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/vp536ivd0pgr9AuYjqvfUw/o.jpg',
+                }}
+            />           
         </View>
     )
 }

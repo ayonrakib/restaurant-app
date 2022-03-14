@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, SafeAreaView, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import Results from "../components/Results";
+import getStyles from '.././static/styles/styles'
 
 export default function SearchScreen(){
     console.log("came in searchscreen component!")
@@ -26,8 +27,8 @@ export default function SearchScreen(){
     for(let index in restaurants){
         // console.log("name of the current restaurant is: ",restaurants[index].name)
         restaurantJSXList.push(
-            <View>
-                <Text key={Math.random()}>{restaurants[index].name } {"\n"}</Text> 
+            <View key={Math.random()} style={{marginRight:70}}>
+                <Text>{restaurants[index].name } {"\n"}</Text> 
                 <Image
                     style = {{ width: 100, height: 100, borderRadius: 18 }}
                     source={{
@@ -42,7 +43,7 @@ export default function SearchScreen(){
     }
     // console.log("restaurantJSXList is: ",restaurantJSXList)
     return (
-        <View>
+        <ScrollView>
             <SearchBar 
                 term = {term} 
                 onTermChange = {setTerm} 
@@ -63,9 +64,7 @@ export default function SearchScreen(){
                 uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/vp536ivd0pgr9AuYjqvfUw/o.jpg',
                 }}
             />
-            <Text>
-                 {restaurantJSXList}
-            </Text>  
-        </View>
+            {restaurantJSXList}
+        </ScrollView>
     )
 }

@@ -15,7 +15,7 @@ export default () => {
         try {
             const response = await yelp.get('/search', {
                 params: {
-                    limit: 5,
+                    limit: 20,
                     term: searchTerm,
                     location: 'austin'
                 }
@@ -34,7 +34,7 @@ export default () => {
         if (results === []){
             return null
         }
-        console.log("results in showCheapRestaurants method is: ",results.length)
+        // console.log("results in showCheapRestaurants method is: ",results.length)
         for(let index in results){
             // console.log("restaurant name is: ",results[index])
         }

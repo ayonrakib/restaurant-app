@@ -6,14 +6,13 @@ import Results from "../components/Results";
 import getStyles from '.././static/styles/styles'
 
 export default function SearchScreen(){
-    console.log("came in searchscreen component!")
+    // console.log("came in searchscreen component!")
     const [term, setTerm] = useState('')
     const [errorInSearchingRestaurants, results, searchApi] = useResults();
     const [restaurants, SetRestaurants] = useState([]);
-
-    const filterResultsByPrice = (price) => {
-        // price === "$" || "$$" || "$$$"
-    }
+    // const [cheapRestaurants, setCheapRestaurants] = useState([]);
+    const [affordableRestaurants, setAffordableRestaurants] = useState([]);
+    const [costlyRestaurants, setCostlyRestaurants] = useState([]);
 
     // console.log("updated restaurant state in searchscreen method: ",restaurant)
 
@@ -36,12 +35,27 @@ export default function SearchScreen(){
                     }}
                 />
             </View>
-        
-        
-        
         )
     }
     // console.log("restaurantJSXList is: ",restaurantJSXList)
+    let currentCheapRestaurants = [];
+    for(let index in restaurants){
+        if(restaurants[index].price === "$"){
+            currentCheapRestaurants.push(
+                <View key={Math.random()}>
+                    <Text>{restaurants[index].name} {'\n'}</Text>
+                    <Image
+                        style={{height: 100, width: 100, borderRadius: 18}}
+                        source={{
+                            uri: restaurants[index].image_url
+                        }}
+                    />
+                </View>
+            )
+        }
+    }
+    let cheapRestaurants = <ScrollView horizontal>{currentCheapRestaurants}</ScrollView>
+    // setCheapRestaurants(currentCheapRestaurants);
     return (
         <ScrollView>
             <SearchBar 
@@ -58,13 +72,18 @@ export default function SearchScreen(){
             <Results title = "Cost Effective"/>
             <Results title = "Cheap"/>
             <Results title = "Costly"/>
-            <Image
+            {/* <Image
                 style = {{ width: 100, height: 100, borderRadius: 18 }}
                 source={{
                 uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/vp536ivd0pgr9AuYjqvfUw/o.jpg',
                 }}
-            />
+            /> */}
             {restaurantJSXList}
+            <Text>
+            {'\n'} Cheap restaurants: {'\n'} {'\n'}
+                
+            </Text>
+            {cheapRestaurants}
         </ScrollView>
     )
 }

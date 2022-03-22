@@ -42,10 +42,10 @@ export default function SearchScreen(){
     for(let index in restaurants){
         if(restaurants[index].price === "$"){
             currentCheapRestaurants.push(
-                <View key={Math.random()}>
-                    <Text> {restaurants[index].name} {'\n'} </Text>
+                <View key={Math.random()} style={{marginRight: 20}}>
+                    <Text> {restaurants[index].name}</Text>
                     <Image
-                        style={{height: 100, width: 100, borderRadius: 18}}
+                        style={{height: 200, width: 200, borderRadius: 18}}
                         source={{
                             uri: restaurants[index].image_url
                         }}
@@ -55,7 +55,7 @@ export default function SearchScreen(){
         }
     }
     let cheapRestaurants = 
-            <ScrollView style={{flexDirection: "row"}}>
+            <ScrollView>
                 <Text >
                     {'\n'} Cheap restaurants: 
                     

@@ -134,7 +134,6 @@ export default function SearchScreen(){
     // }
 
     let cheapRestaurants = filterRestaurantsByPrice("$");
-    console.log("cheapRestaurants : ", cheapRestaurants)
     let normalRestaurants = filterRestaurantsByPrice("$$");
     let costlyRestaurants = filterRestaurantsByPrice("$$$");
 
